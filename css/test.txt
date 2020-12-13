@@ -1,0 +1,80 @@
+ <section id="deleterequests">				
+                    
+                    <div id="wrapper">
+						<form action="deleterequests.php" method="post">
+
+						 
+						  </br></br>
+						 
+
+						<table border='1'>
+						<thead>
+						<tr>
+						<th>Course Name</th>
+						<th>Course Crn</th>
+						<th>Reason</th>
+						<th>State</th>
+						<th>Delete</th>
+						</tr>
+						</thead>
+						<tbody>
+
+                           <?php
+						   $candelete=true;
+						  
+
+						   $res= $conn->query("select requestid,coursename,coursecrn,reason,state from capacityrequest where email='$mail'");
+						  
+						   foreach($res as $req){
+							  $d = $req[0];
+							  $found=false;
+								$res = $conn->query("select requestid from requestsresponses");
+								foreach($res as $ids){
+									if($ids[0]==$d){
+										$found=true;
+									}
+								}
+							   ?>
+							   
+						   <tr>
+						   <td><?=$req[1]?></td>
+						   <td><?=$req[2]?></td>
+						   <td><?=$req[3]?></td>
+						   <?php if($found==true){?>
+						   <td>This request has been answered .. Check it <a href="requestresponse.php?id=<?=$d?> && email=<?=$mail?>">here </a></td>
+						   	<td>You cannot delete</td>
+
+						   <?php
+						   }
+						   else{
+						   ?>
+						   <td><?=$req[4]?></td>
+ 
+						   <td><input type="checkbox" name="cb<?=$req[0]?>"/></td>
+							
+
+						   <?php
+						   $candelete=true;
+						   }
+						   }
+						   ?>
+						   </tr>
+						   </tbody>
+						   </table>
+						   </br>
+						   <?php if($candelete){
+							   ?>
+						   <h1>Check all the requests you want to delete then press delete</h1>
+						   						   	<input  name="email"  type="hidden" value="<?=$mail?>"/> 
+
+						   <input type="submit" value="Delete"/> 
+
+						   </form>
+						 <?php
+						 
+						   }
+						   ?>
+                       
+                </div>  
+            </section>
+			

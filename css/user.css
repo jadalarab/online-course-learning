@@ -1,0 +1,14 @@
+#capacity,#requests,#updaterequests,#deleterequests,#showrequests,#showresponses	{
+	display:none;
+
+}
+.tb{
+	width:50%;	
+}
+#aub{
+	height:60px;
+}
+#requestsbtn,#capacitybtn{
+	display:inline;
+	
+}

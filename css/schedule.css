@@ -1,0 +1,14 @@
+td{
+	width:10em;
+	height:10em;
+	border:solid;
+	
+	
+}
+table{
+	border:solid;
+	border-collapse:collapse;
+}
+.fixedtd{
+	height:2.5em;
+}
